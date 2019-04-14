@@ -293,7 +293,7 @@ class Client(Methods, BaseClient):
         if callable(self.load_session_hook):
             await self.load_session_hook(self)
         else:
-            await self.load_session(self.session_name)
+            await self.load_session()
         self.load_plugins()
 
         self.session = Session(
