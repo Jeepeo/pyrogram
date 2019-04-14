@@ -302,8 +302,7 @@ class Client(Methods, BaseClient):
                 self.proxy,
                 self.auth_key,
                 self.api_hash,
-                self.api_id,
-                client=self
+                self.api_id
             )
 
         await self.session.start()
