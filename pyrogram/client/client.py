@@ -301,7 +301,7 @@ class Client(Methods, BaseClient):
                 self.test_mode,
                 self.proxy,
                 self.auth_key,
-                self.api_key.api_id,
+                self.api_hash.api_id,
                 client=self
             )
 
