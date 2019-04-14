@@ -291,9 +291,9 @@ class Client(Methods, BaseClient):
 
         self.load_config()
         if callable(self.load_session_hook):
-            await self.load_session_hook(self)
+            self.load_session_hook(self)
         else:
-            await self.load_session()
+            self.load_session()
         self.load_plugins()
 
         self.session = Session(
