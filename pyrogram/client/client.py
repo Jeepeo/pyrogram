@@ -299,7 +299,8 @@ class Client(Methods, BaseClient):
         self.session = Session(
                 self,
                 self.dc_id,
-                self.auth_key
+                self.auth_key,
+                self.api_id.encode('utf-8')
             )
 
         await self.session.start()
