@@ -297,10 +297,13 @@ class Client(Methods, BaseClient):
         self.load_plugins()
 
         self.session = Session(
-            self,
-            self.dc_id,
-            self.auth_key
-        )
+                self.dc_id,
+                self.test_mode,
+                self.proxy,
+                self.auth_key,
+                self.api_key.api_id,
+                client=self
+            )
 
         await self.session.start()
         self.is_started = True
