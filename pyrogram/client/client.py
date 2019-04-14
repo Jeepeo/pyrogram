@@ -236,6 +236,8 @@ class Client(Methods, BaseClient):
         self.plugins = plugins
         self.no_updates = no_updates
         self.takeout = takeout
+        self.load_session_hook = None
+        self.save_session_hook = None
 
         self.dispatcher = Dispatcher(self, workers)
 
@@ -288,7 +290,10 @@ class Client(Methods, BaseClient):
                         'More info: https://docs.pyrogram.ml/start/Setup#bot-authorization\n')
 
         self.load_config()
-        await self.load_session()
+        if callable(self.load_session_hook):
+            await self.load_session_hook(self)
+        else:
+            await self.load_session(self.session_name)
         self.load_plugins()
 
         self.session = Session(
@@ -309,7 +314,10 @@ class Client(Methods, BaseClient):
                     self.is_bot = True
                     await self.authorize_bot()
 
-                self.save_session()
+                if callable(self.save_session_hook):
+                    self.save_session_hook(self)
+                else:
+                    self.save_session()
 
             if not self.is_bot:
                 if self.takeout:
