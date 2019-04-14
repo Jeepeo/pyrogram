@@ -298,10 +298,9 @@ class Client(Methods, BaseClient):
 
         self.session = Session(
                 self.dc_id,
-                self.test_mode,
-                self.proxy,
                 self.auth_key,
-                self.api_hash
+                self.api_hash,
+                self.api_id
             )
 
         await self.session.start()
